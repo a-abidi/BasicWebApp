@@ -27,9 +27,9 @@ public class QueryProcessor {
             return "hello";
         }
 
-        if (query.toLowerCase().contains("what is 1 plus 2")) {
-            return "3";
-        }
+//        if (query.toLowerCase().contains("what is 1 plus 2")) {
+//            return "3";
+//        }
         
         if (query.toLowerCase().contains("which of the following numbers is the largest: 371, 15, 217, 74")) {
             return "371";
@@ -38,6 +38,21 @@ public class QueryProcessor {
 //        if (query.toLowerCase().contains("which of the following numbers is the largest: 916, 1")) {
 //            return "916";
 //        }
+
+        if (query.toLowerCase().contains("plus")) {
+            String[] x = query.split("is");
+            String[] y = x[1].split(" plus ");
+            System.out.println(Arrays.toString(y));
+
+            List<Integer> output = new ArrayList<>();
+            int sum = 0;
+
+            for (String number : y) {
+                sum += Integer.parseInt(number.trim());
+            }
+
+            return String.valueOf(sum);
+        }
 
         if (query.toLowerCase().contains("the largest")) {
             String[] x = query.split(":");
@@ -52,10 +67,5 @@ public class QueryProcessor {
         }
 
         return "";
-    }
-
-    public static void main(String[] args) {
-        QueryProcessor qp = new QueryProcessor();
-        qp.process("which of the following numbers is the largest: 916, 1");
     }
 }
