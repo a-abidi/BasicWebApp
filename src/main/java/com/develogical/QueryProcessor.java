@@ -1,5 +1,6 @@
 package com.develogical;
 
+import javax.management.Query;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -52,6 +53,13 @@ public class QueryProcessor {
             }
 
             return String.valueOf(sum);
+        }
+
+        if (query.toLowerCase().contains("minus")) {
+            String[] x = query.split("is");
+            String[] y = x[1].split(" minus ");
+            System.out.println(Arrays.toString(y));
+            return String.valueOf(Integer.parseInt(y[0].trim()) - Integer.parseInt(y[1].trim()));
         }
 
         if (query.toLowerCase().contains("multiplied")) {
