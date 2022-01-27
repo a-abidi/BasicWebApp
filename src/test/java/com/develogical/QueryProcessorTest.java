@@ -32,6 +32,11 @@ public class QueryProcessorTest {
     }
 
     @Test
+    public void isNameThere() throws Exception {
+        assertThat(queryProcessor.process("your name"), containsString("hello"));
+    }
+
+    @Test
     public void failingTest() throws Exception {
 //        this test should fail
         assertThat(queryProcessor.process("shakespeare"), containsString("ihowa"));

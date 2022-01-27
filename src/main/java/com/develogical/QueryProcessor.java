@@ -18,6 +18,10 @@ public class QueryProcessor {
             return "Ihowa is a 4th Year MEng Computing student at Imperial College London";
         }
 
+        if (query.toLowerCase().contains("your name")) {
+            return "hello";
+        }
+
         return "";
     }
 }
