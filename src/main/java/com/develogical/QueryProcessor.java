@@ -54,7 +54,22 @@ public class QueryProcessor {
             return String.valueOf(sum);
         }
 
-        if (query.toLowerCase().contains("the largest")) {
+        if (query.toLowerCase().contains("multiplied")) {
+            String[] x = query.split("is");
+            String[] y = x[1].split(" multiplied by ");
+            System.out.println(Arrays.toString(y));
+
+            List<Integer> output = new ArrayList<>();
+            int sum = 0;
+
+            for (String number : y) {
+                sum *= Integer.parseInt(number.trim());
+            }
+
+            return String.valueOf(sum);
+        }
+
+        if (query.toLowerCase().contains("which of the following numbers is the largest:")) {
             String[] x = query.split(":");
             List<String> list = Arrays.asList(x[1].split(",", -1));
             List<Integer> output = new ArrayList<>();
