@@ -69,6 +69,17 @@ public class QueryProcessor {
             return String.valueOf(sum);
         }
 
+        if (query.toLowerCase().contains("which of the following numbers are primes:")) {
+            String[] arr = query.split(":");
+            List<String> list = Arrays.asList(arr[1].split(",", -1));
+
+            for (String number : list) {
+                if (isPrime(Integer.parseInt(number))) {
+                    return number;
+                }
+            }
+        }
+
         if (query.toLowerCase().contains("which of the following numbers is the largest:")) {
             String[] x = query.split(":");
             List<String> list = Arrays.asList(x[1].split(",", -1));
@@ -82,5 +93,17 @@ public class QueryProcessor {
         }
 
         return "";
+    }
+
+    public static boolean isPrime(int n) {
+        if (n<= 1) {
+            return false;
+        }
+        for (int i = 2; i< n; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }
