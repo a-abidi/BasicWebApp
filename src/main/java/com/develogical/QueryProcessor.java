@@ -1,5 +1,10 @@
 package com.develogical;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class QueryProcessor {
 
     public String process(String query) {
@@ -30,10 +35,27 @@ public class QueryProcessor {
             return "371";
         }
 
-        if (query.toLowerCase().contains("which of the following numbers is the largest: 916, 1")) {
-            return "916";
+//        if (query.toLowerCase().contains("which of the following numbers is the largest: 916, 1")) {
+//            return "916";
+//        }
+
+        if (query.toLowerCase().contains("the largest")) {
+            String[] x = query.split(":");
+            List<String> list = Arrays.asList(x[1].split(",", -1));
+            List<Integer> output = new ArrayList<>();
+
+            for (String number : list) {
+                output.add(Integer.parseInt(number.trim()));
+            }
+
+            return Collections.max(output).toString();
         }
 
         return "";
+    }
+
+    public static void main(String[] args) {
+        QueryProcessor qp = new QueryProcessor();
+        qp.process("which of the following numbers is the largest: 916, 1");
     }
 }
